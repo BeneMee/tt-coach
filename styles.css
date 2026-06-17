@@ -1,14 +1,15 @@
 :root {
-  --bg: #0f1115;
-  --surface: #181b22;
-  --surface-2: #20242e;
-  --text: #f2f4f8;
-  --text-dim: #9aa3b2;
-  --accent: #ff5a1f;       /* energetisches Orange */
-  --accent-2: #1fb6ff;     /* frisches Blau */
-  --border: #2a2f3a;
+  --bg: #f5f7fb;           /* softes Off-White */
+  --surface: #ffffff;      /* Karten / Flächen */
+  --surface-2: #eef1f7;    /* dezente Akzentfläche */
+  --text: #1d2433;         /* dunkles Slate */
+  --text-dim: #6b7587;     /* gedämpfter Text */
+  --accent: #16c2a3;       /* frisches Türkis-Grün */
+  --accent-light: #3ed8bb; /* hellere Variante für Verläufe */
+  --accent-2: #5b8def;     /* freundliches Blau */
+  --border: #e4e8ef;       /* helle Trennlinien */
   --radius: 16px;
-  --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  --shadow: 0 8px 24px rgba(30, 45, 80, 0.08);
 }
 
 * {
@@ -59,7 +60,7 @@ body {
   height: 18px;
   background: var(--accent);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 90, 31, 0.6);
+  box-shadow: 0 0 10px rgba(22, 194, 163, 0.45);
 }
 
 .burger {
@@ -87,7 +88,7 @@ body {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(20, 30, 50, 0.35);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
@@ -185,7 +186,7 @@ body {
   height: 88px;
   margin: 0 auto 22px;
   border-radius: 28px;
-  background: linear-gradient(135deg, var(--accent), #ff8a3d);
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
   display: grid;
   place-items: center;
   font-size: 44px;
@@ -271,7 +272,7 @@ body {
   flex: 0 0 56px;
   height: 56px;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--surface-2), #2c3340);
+  background: linear-gradient(135deg, var(--surface-2), #dce2ee);
   display: grid;
   place-items: center;
   font-size: 24px;
@@ -302,9 +303,9 @@ body {
   color: var(--text-dim);
 }
 
-.tag.level-Anfänger { color: #4ade80; }
-.tag.level-Fortgeschritten { color: #fbbf24; }
-.tag.level-Profi { color: #f87171; }
+.tag.level-Anfänger { color: #15a34a; }
+.tag.level-Fortgeschritten { color: #c77d06; }
+.tag.level-Profi { color: #dc2626; }
 
 /* ---------- Detailseite ---------- */
 .video-wrap {
@@ -335,7 +336,7 @@ body {
   aspect-ratio: 16 / 9;
   border-radius: var(--radius);
   background:
-    repeating-linear-gradient(45deg, #1c2029, #1c2029 12px, #20242e 12px, #20242e 24px);
+    repeating-linear-gradient(45deg, #eef1f7, #eef1f7 12px, #e4e8ef 12px, #e4e8ef 24px);
   border: 1px solid var(--border);
   display: grid;
   place-items: center;
