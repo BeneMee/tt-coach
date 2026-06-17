@@ -75,7 +75,7 @@ const TECHNIQUES = [
       "Topspin gegen Block: 50 Bälle am Stück sicher aufs Tisch",
       "Topspin aus der Vorhand-Ecke mit Beinarbeit",
     ],
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/watch?v=woT6NgJymBk",
   },
   {
     id: "rh-topspin",
@@ -183,3 +183,97 @@ const TECHNIQUES = [
     videoUrl: "",
   },
 ];
+
+// ---------------------------------------------------------------------------
+// ÜBUNGEN – der eigentliche Mehrwert der App.
+// Bewusst eine EIGENE Liste (nicht in die Technik eingebettet): Eine Übung
+// verweist über "techniqueIds" auf eine oder mehrere Techniken. Heute zeigen
+// wir sie auf der Technikseite; später lässt sich daraus problemlos eine
+// übungs-zentrische Navigation bauen, ohne die Daten umzubauen.
+//
+// Felder:
+//   id           eindeutiger Schlüssel
+//   title        Name der Übung
+//   techniqueIds welche Technik(en) sie trainiert -> Verweis auf TECHNIQUES.id
+//   level        "Anfänger" | "Fortgeschritten" | "Profi"
+//   setup        Was man braucht, z.B. "Mit Partner", "Am Roboter", "Allein"
+//   goal         ein Satz: Was bringt die Übung?
+//   steps        Ablauf in Schritten
+//   tips         Tipps / Worauf achten
+//   videoUrl     leer ("") -> Platzhalter; später euer eigenes Video
+
+const EXERCISES = [
+  {
+    id: "vh-ts-konstanz",
+    title: "VH-Topspin auf Block – Konstanz",
+    techniqueIds: ["vh-topspin"],
+    level: "Fortgeschritten",
+    setup: "Mit Partner",
+    goal: "Sicherheit und gleichmäßige Rotation im Vorhand-Topspin entwickeln.",
+    steps: [
+      "Partner blockt jeden Ball ruhig in deine Vorhand (diagonal).",
+      "Du spielst Topspin – Ziel: 20 Bälle am Stück sicher auf den Tisch.",
+      "Schaffst du 20, steigere auf 30. Tempo zweitrangig, erst Sicherheit.",
+    ],
+    tips: [
+      "Nicht hauen – den Ball streifen, Rotation vor Tempo.",
+      "Nach jedem Schlag locker in die Grundstellung zurück.",
+    ],
+    videoUrl: "",
+  },
+  {
+    id: "vh-ts-unterschnitt",
+    title: "VH-Topspin gegen Unterschnitt",
+    techniqueIds: ["vh-topspin"],
+    level: "Fortgeschritten",
+    setup: "Mit Partner",
+    goal: "Den ersten Angriff gegen geschnittene Bälle sicher aufziehen.",
+    steps: [
+      "Partner schupft dir den Ball lang in die Vorhand.",
+      "Du ziehst mit viel Aufwärtsbewegung Topspin auf.",
+      "10 Wiederholungen, dann Partner wechselt Platzierung leicht.",
+    ],
+    tips: [
+      "Tiefer in die Knie gehen und mehr von unten nach oben arbeiten.",
+      "Schläger etwas offener als gegen Block.",
+    ],
+    videoUrl: "",
+  },
+  {
+    id: "vh-ts-fallback",
+    title: "Falkenberg (Topspin + Beinarbeit)",
+    techniqueIds: ["vh-topspin", "rh-topspin"],
+    level: "Profi",
+    setup: "Mit Partner",
+    goal: "Topspin mit schneller Beinarbeit kombinieren – Klassiker im Training.",
+    steps: [
+      "Partner spielt fest: 1) Rückhand, 2) Mitte (VH umlaufen), 3) Vorhand.",
+      "Du spielst RH-Topspin, dann umspringen VH-Topspin aus der Mitte, dann VH-Topspin außen.",
+      "Im Kreis wiederholen, sauber statt schnell starten.",
+    ],
+    tips: [
+      "Erst langsam einlaufen lassen, Tempo später steigern.",
+      "Aktiv mit kleinen Schritten arbeiten, nicht nur mit dem Arm strecken.",
+    ],
+    videoUrl: "",
+  },
+  {
+    id: "vh-konter-rhythmus",
+    title: "Konter-Rhythmus diagonal",
+    techniqueIds: ["vh-konter"],
+    level: "Anfänger",
+    setup: "Mit Partner",
+    goal: "Gefühl und gleichmäßigen Rhythmus im Vorhand-Konter aufbauen.",
+    steps: [
+      "Beide spielen locker Vorhand-Konter diagonal.",
+      "Ziel: 30 Bälle am Stück ohne Fehler halten.",
+      "Danach bewusst etwas schneller, aber kontrolliert.",
+    ],
+    tips: [
+      "Ball früh im höchsten Punkt nehmen.",
+      "Locker bleiben, kleine Bewegung aus dem Unterarm.",
+    ],
+    videoUrl: "",
+  },
+];
+
