@@ -1,12 +1,19 @@
 // Navigation: Willkommen -> Burger-Menü -> Kategorie -> Technikliste -> Detail.
 
-// Kategorien fürs Burger-Menü. "match" entscheidet, welche Techniken dazugehören.
+// Kategorien fürs Burger-Menü. "group" verweist auf das group-Feld in TECHNIQUES.
+// Reihenfolge hier = Reihenfolge im Menü.
 const CATEGORIES = [
-  { id: "vorhand",   label: "Vorhand",    icon: "🏓", match: (t) => t.side === "Vorhand" && t.category === "Grundschläge" },
-  { id: "rueckhand", label: "Rückhand",   icon: "🏓", match: (t) => t.side === "Rückhand" },
-  { id: "aufschlag", label: "Aufschläge", icon: "🚀", match: (t) => t.category === "Aufschläge" },
-  { id: "abwehr",    label: "Abwehr",     icon: "🛡️", match: (t) => t.category === "Rückschlag" && t.side === "Beide" },
+  { id: "vorhand",      label: "Vorhand",        icon: "🏓", group: "Vorhand" },
+  { id: "rueckhand",    label: "Rückhand",       icon: "🏓", group: "Rückhand" },
+  { id: "block-abwehr", label: "Block & Abwehr", icon: "🛡️", group: "Block & Abwehr" },
+  { id: "aufschlag",    label: "Aufschläge",     icon: "🚀", group: "Aufschlag" },
+  { id: "rueckschlag",  label: "Rückschlag",     icon: "↩️", group: "Rückschlag" },
 ];
+
+// Alle Techniken einer Menü-Kategorie holen.
+function techniquesInCategory(cat) {
+  return TECHNIQUES.filter((t) => t.group === cat.group);
+}
 
 const els = {
   views: {
@@ -33,7 +40,7 @@ function showView(name) {
 function buildMenu() {
   els.menuList.innerHTML = "";
   for (const cat of CATEGORIES) {
-    const count = TECHNIQUES.filter(cat.match).length;
+    const count = techniquesInCategory(cat).length;
     const li = document.createElement("li");
     li.innerHTML = `
       <span class="menu-icon">${cat.icon}</span>
@@ -63,7 +70,7 @@ function openCategory(catId) {
   if (!cat) return;
 
   els.categoryTitle.textContent = cat.label;
-  const techniques = TECHNIQUES.filter(cat.match);
+  const techniques = techniquesInCategory(cat);
   els.techniqueList.innerHTML = "";
 
   if (techniques.length === 0) {

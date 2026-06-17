@@ -4,20 +4,22 @@
 // Felder:
 //   id          eindeutiger Schlüssel (kebab-case)
 //   name        Anzeigename
-//   category    "Grundschläge" | "Aufschläge" | "Rückschlag" | "Fortgeschritten"
+//   group       Menü-Kategorie -> steuert, unter welchem Menüpunkt die Technik erscheint
+//               "Vorhand" | "Rückhand" | "Block & Abwehr" | "Aufschlag" | "Rückschlag"
 //   side        "Vorhand" | "Rückhand" | "Beide"
 //   level       "Anfänger" | "Fortgeschritten" | "Profi"
 //   summary     ein Satz für die Übersichtskachel
 //   description kurzer Erklärungstext
 //   keyPoints   Liste: "Worauf achten?"
-//   drills      Liste: konkrete Übungen
-//   videoUrl    leer lassen ("") -> zeigt Platzhalter
+//   drills      kurze Übungsideen (Fallback, falls noch keine ausgearbeitete Übung existiert)
+//   videoUrl    leer ("") -> Platzhalter; YouTube-Link (z.B. DTTB-Technikleitbild) wird eingebettet
 
 const TECHNIQUES = [
+  // ---------------- Vorhand ----------------
   {
     id: "vh-konter",
     name: "Vorhand Konter",
-    category: "Grundschläge",
+    group: "Vorhand",
     side: "Vorhand",
     level: "Anfänger",
     summary: "Der kontrollierte Grundschlag für die Vorhandseite.",
@@ -36,30 +38,9 @@ const TECHNIQUES = [
     videoUrl: "",
   },
   {
-    id: "rh-konter",
-    name: "Rückhand Konter",
-    category: "Grundschläge",
-    side: "Rückhand",
-    level: "Anfänger",
-    summary: "Stabiler Block- und Konterschlag vor dem Körper.",
-    description:
-      "Beim Rückhand-Konter spielst du den Ball kompakt vor dem Körper. Die Bewegung ist klein und kontrolliert — ideal für schnelle Ballwechsel am Tisch.",
-    keyPoints: [
-      "Ellbogen vor dem Bauch als festes Drehzentrum",
-      "Kurze Bewegung aus dem Unterarm",
-      "Handgelenk stabil halten",
-      "Früher Treffpunkt direkt nach dem Aufspringen",
-    ],
-    drills: [
-      "Rückhand-Konter diagonal über die Mitte",
-      "Wechsel Block/Konter mit Partner steigern",
-    ],
-    videoUrl: "",
-  },
-  {
     id: "vh-topspin",
     name: "Vorhand Topspin",
-    category: "Grundschläge",
+    group: "Vorhand",
     side: "Vorhand",
     level: "Fortgeschritten",
     summary: "Der wichtigste Angriffsschlag mit viel Überschnitt.",
@@ -78,9 +59,53 @@ const TECHNIQUES = [
     videoUrl: "https://www.youtube.com/watch?v=woT6NgJymBk",
   },
   {
+    id: "vh-flip",
+    name: "Vorhand-Flip",
+    group: "Vorhand",
+    side: "Vorhand",
+    level: "Profi",
+    summary: "Kurze Bälle aktiv mit der Vorhand über dem Tisch angreifen.",
+    description:
+      "Der Vorhand-Flip ist ein Angriffsschlag gegen kurze Bälle direkt über dem Tisch. Du gehst mit dem Spielbein an den Ball und erzeugst aus Unterarm und Handgelenk Tempo und Rotation, statt den Ball nur passiv zurückzulegen.",
+    keyPoints: [
+      "Mit dem Spielbein unter den Tisch an den Ball heran",
+      "Schläger leicht öffnen und unter den Ball bringen",
+      "Aus Unterarm und Handgelenk nach vorne-oben beschleunigen",
+      "Treffpunkt früh, knapp über der Tischplatte",
+    ],
+    drills: [
+      "Vorhand-Flip gegen kurzen Unterschnitt-Aufschlag",
+      "Flip und sofort aktiver Folgeball aus der Vorhand",
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=L4Cx4cakFcU",
+  },
+
+  // ---------------- Rückhand ----------------
+  {
+    id: "rh-konter",
+    name: "Rückhand Konter",
+    group: "Rückhand",
+    side: "Rückhand",
+    level: "Anfänger",
+    summary: "Stabiler Block- und Konterschlag vor dem Körper.",
+    description:
+      "Beim Rückhand-Konter spielst du den Ball kompakt vor dem Körper. Die Bewegung ist klein und kontrolliert — ideal für schnelle Ballwechsel am Tisch.",
+    keyPoints: [
+      "Ellbogen vor dem Bauch als festes Drehzentrum",
+      "Kurze Bewegung aus dem Unterarm",
+      "Handgelenk stabil halten",
+      "Früher Treffpunkt direkt nach dem Aufspringen",
+    ],
+    drills: [
+      "Rückhand-Konter diagonal über die Mitte",
+      "Wechsel Block/Konter mit Partner steigern",
+    ],
+    videoUrl: "",
+  },
+  {
     id: "rh-topspin",
     name: "Rückhand Topspin",
-    category: "Grundschläge",
+    group: "Rückhand",
     side: "Rückhand",
     level: "Fortgeschritten",
     summary: "Angriff aus der Rückhand — kompakt und gefährlich.",
@@ -96,12 +121,121 @@ const TECHNIQUES = [
       "Rückhand-Topspin gegen Unterschnitt-Anspiel",
       "Rückhand-Topspin im Wechsel mit Block",
     ],
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/watch?v=DxQlWd4Yvw8",
   },
+
+  // ---------------- Block & Abwehr ----------------
+  {
+    id: "rh-block",
+    name: "Rückhand-Block",
+    group: "Block & Abwehr",
+    side: "Rückhand",
+    level: "Anfänger",
+    summary: "Den Topspin des Gegners kontrolliert am Tisch abblocken.",
+    description:
+      "Der Rückhand-Block ist die einfachste Antwort auf einen gegnerischen Topspin: Du hältst den Schläger ruhig und nutzt das Tempo des Balls, um ihn kontrolliert zurückzulenken.",
+    keyPoints: [
+      "Schläger geschlossen vor dem Körper halten",
+      "Ball früh direkt nach dem Aufspringen nehmen",
+      "Wenig eigene Bewegung, nur gegenhalten",
+      "Über die Schlägerstellung die Richtung steuern",
+    ],
+    drills: [
+      "Block gegen Dauer-Topspin des Partners halten",
+      "Block mal kurz, mal weit in die Ecken platzieren",
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=3li1BmjduTs",
+  },
+  {
+    id: "rh-spinblock",
+    name: "Rückhand-Spinblock",
+    group: "Block & Abwehr",
+    side: "Rückhand",
+    level: "Fortgeschritten",
+    summary: "Aktiver Block mit eigener Rotation gegen Topspin.",
+    description:
+      "Beim Spinblock gibst du dem Ball aktiv etwas eigene Rotation mit. Dadurch wird der Block gefährlicher und für den Gegner schwerer zu kontern als ein passiver Block.",
+    keyPoints: [
+      "Im Treffmoment leicht aktiv nach vorne-oben begleiten",
+      "Schläger geschlossen, kurzer Impuls aus dem Handgelenk",
+      "Ball weiterhin früh nehmen",
+      "Stabil bleiben, nicht ausholen",
+    ],
+    drills: [
+      "Spinblock im Wechsel mit normalem Block",
+      "Spinblock gezielt in die Ecken setzen",
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=nFtKngLow-s",
+  },
+  {
+    id: "rh-pressblock",
+    name: "Rückhand-Pressblock",
+    group: "Block & Abwehr",
+    side: "Rückhand",
+    level: "Fortgeschritten",
+    summary: "Flacher, schneller Block, der den Ball flach hält.",
+    description:
+      "Der Pressblock ist ein flacher, schneller Block, bei dem du den Ball aktiv nach vorne drückst. Er nimmt dem Gegner Zeit und hält den Ball besonders flach.",
+    keyPoints: [
+      "Schläger flach und aktiv nach vorne führen",
+      "Sehr früher Treffpunkt",
+      "Kompakte Bewegung, kein Ausholen",
+      "Druck nach vorne statt nach oben",
+    ],
+    drills: [
+      "Pressblock gegen festen Topspin",
+      "Wechsel Pressblock / normaler Block zur Variation",
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=5t36lxC7fGI",
+  },
+  {
+    id: "vh-abwehr",
+    name: "Vorhand-Abwehr",
+    group: "Block & Abwehr",
+    side: "Vorhand",
+    level: "Profi",
+    summary: "Defensiver Schnittball aus der Distanz mit der Vorhand.",
+    description:
+      "Die Vorhand-Abwehr ist ein defensiver Schlag aus etwas größerer Tischentfernung. Du gibst dem Ball Unterschnitt und spielst ihn kontrolliert tief zurück, um Topspins des Gegners zu neutralisieren.",
+    keyPoints: [
+      "Etwas vom Tisch weggehen, Ball im absteigenden Punkt nehmen",
+      "Schläger offen, Bewegung von oben nach unten-vorne",
+      "Ruhige, lange Bewegung für stabilen Unterschnitt",
+      "Den Ball tief und lang platzieren",
+    ],
+    drills: [
+      "Abwehr gegen Dauer-Topspin des Partners",
+      "Abwehr mit bewusst wechselndem Schnitt",
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=TP713EU7xS8",
+  },
+  {
+    id: "rh-abwehr",
+    name: "Rückhand-Abwehr",
+    group: "Block & Abwehr",
+    side: "Rückhand",
+    level: "Profi",
+    summary: "Defensiver Schnittball aus der Distanz mit der Rückhand.",
+    description:
+      "Die Rückhand-Abwehr neutralisiert gegnerische Topspins aus der Distanz. Mit offenem Schläger und einer Abwärtsbewegung gibst du dem Ball Unterschnitt und spielst ihn sicher zurück.",
+    keyPoints: [
+      "Distanz zum Tisch aufbauen",
+      "Schläger offen, von oben nach unten-vorne führen",
+      "Ball im absteigenden Punkt treffen",
+      "Lange, kontrollierte Bewegung",
+    ],
+    drills: [
+      "Rückhand-Abwehr gegen Dauer-Topspin",
+      "Abwehr und gelegentlicher Konterangriff",
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=cYRiBtIeDqE",
+  },
+
+  // ---------------- Aufschlag ----------------
   {
     id: "aufschlag-unterschnitt",
     name: "Kurzer Unterschnitt-Aufschlag",
-    category: "Aufschläge",
+    group: "Aufschlag",
     side: "Vorhand",
     level: "Anfänger",
     summary: "Kurzer Aufschlag, der den Gegner am Angriff hindert.",
@@ -122,7 +256,7 @@ const TECHNIQUES = [
   {
     id: "aufschlag-seitschnitt",
     name: "Seitschnitt-Aufschlag",
-    category: "Aufschläge",
+    group: "Aufschlag",
     side: "Vorhand",
     level: "Fortgeschritten",
     summary: "Aufschlag mit Seitwärtsdrall, der den Ball ausbrechen lässt.",
@@ -140,10 +274,12 @@ const TECHNIQUES = [
     ],
     videoUrl: "",
   },
+
+  // ---------------- Rückschlag ----------------
   {
     id: "schupfen",
     name: "Schupfen (kurz & lang)",
-    category: "Rückschlag",
+    group: "Rückschlag",
     side: "Beide",
     level: "Anfänger",
     summary: "Kontrollierter Rückschlag gegen Unterschnitt am Tisch.",
@@ -163,13 +299,13 @@ const TECHNIQUES = [
   },
   {
     id: "flip",
-    name: "Flip (Banane)",
-    category: "Rückschlag",
+    name: "Rückhand-Flip (Banane)",
+    group: "Rückschlag",
     side: "Rückhand",
     level: "Profi",
     summary: "Aggressiver Angriff gegen kurze Bälle über dem Tisch.",
     description:
-      "Der Flip - oft als 'Banane' bezeichnet - ist ein Angriffsschlag gegen kurze Bälle direkt über dem Tisch. Mit Handgelenkseinsatz erzeugst du Topspin und übernimmst sofort die Initiative.",
+      "Der Rückhand-Flip - oft als 'Banane' bezeichnet - ist ein Angriffsschlag gegen kurze Bälle direkt über dem Tisch. Mit Handgelenkseinsatz erzeugst du Topspin und übernimmst sofort die Initiative.",
     keyPoints: [
       "Bein unter den Tisch, nah an den Ball heran",
       "Schläger unter/hinter den Ball bringen",
@@ -275,5 +411,22 @@ const EXERCISES = [
     ],
     videoUrl: "",
   },
+  {
+    id: "rh-block-konstanz",
+    title: "Block halten gegen Topspin",
+    techniqueIds: ["rh-block"],
+    level: "Anfänger",
+    setup: "Mit Partner",
+    goal: "Ruhig und sicher gegen Dauer-Topspin blocken lernen.",
+    steps: [
+      "Partner zieht durchgehend Topspin in deine Rückhand.",
+      "Du blockst kontrolliert zurück – Ziel: 20 Bälle am Stück.",
+      "Danach bewusst mal kurz, mal lang blocken.",
+    ],
+    tips: [
+      "Schläger ruhig halten, das Tempo kommt vom Gegner.",
+      "Ball ganz früh nach dem Aufspringen nehmen.",
+    ],
+    videoUrl: "",
+  },
 ];
-
