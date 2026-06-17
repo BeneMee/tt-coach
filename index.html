@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0f1115" />
+  <link rel="manifest" href="manifest.json" />
+  <title>TT Coach – Tischtennis Techniken</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Topbar mit Burger-Menü -->
+  <header class="topbar">
+    <button id="burgerBtn" class="burger" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="topbar-title"><span class="ball"></span> TT Coach</div>
+  </header>
+
+  <!-- Slide-in Menü -->
+  <div id="overlay" class="overlay"></div>
+  <nav id="drawer" class="drawer">
+    <div class="drawer-header">Kategorien</div>
+    <ul id="menuList" class="menu-list"></ul>
+  </nav>
+
+  <!-- 1) Willkommen -->
+  <section id="homeView" class="view active">
+    <div class="welcome">
+      <div class="welcome-badge">🏓</div>
+      <h1>Willkommen bei TT&nbsp;Coach</h1>
+      <p>
+        Diese App hilft dir, deine Technik gezielt zu verbessern und ein
+        besserer Tischtennisspieler zu werden – Schritt für Schritt, mit
+        klaren Erklärungen und Videos zu jeder Technik.
+      </p>
+      <button id="startBtn" class="primary-btn">Kategorien ansehen</button>
+      <p class="hint">Tipp: oben links jederzeit das Menü öffnen.</p>
+    </div>
+  </section>
+
+  <!-- 2) Kategorie -> Technikliste -->
+  <section id="categoryView" class="view">
+    <button class="back-btn" data-back="home">‹ Startseite</button>
+    <h2 id="categoryTitle" class="view-title"></h2>
+    <div id="techniqueList" class="cards"></div>
+  </section>
+
+  <!-- 3) Technik-Detail -->
+  <section id="detailView" class="view"></section>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

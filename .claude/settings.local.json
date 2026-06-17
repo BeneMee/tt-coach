@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"require\\('./data.js'\\); console.log\\('data.js OK, Techniken:', TECHNIQUES.length\\)\")",
+      "Bash(node --check data.js)",
+      "Bash(node --check app.js)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(git config *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -q -m 'MVP: TT Coach – Tischtennis-Technik-App \\(Platzhalter-Videos\\) *)",
+      "Bash(git branch *)"
+    ]
+  }
+}

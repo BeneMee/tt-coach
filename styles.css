@@ -1,0 +1,401 @@
+:root {
+  --bg: #0f1115;
+  --surface: #181b22;
+  --surface-2: #20242e;
+  --text: #f2f4f8;
+  --text-dim: #9aa3b2;
+  --accent: #ff5a1f;       /* energetisches Orange */
+  --accent-2: #1fb6ff;     /* frisches Blau */
+  --border: #2a2f3a;
+  --radius: 16px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  max-width: 480px;          /* Phone-Frame, zentriert */
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 32px;
+}
+
+/* ---------- Topbar ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-title {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ball {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 90, 31, 0.6);
+}
+
+.burger {
+  width: 38px;
+  height: 38px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.burger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+}
+
+/* ---------- Drawer / Menü ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 30;
+}
+
+.overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 78%;
+  max-width: 320px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+  z-index: 40;
+  padding: 20px 0;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  padding: 0 20px 12px;
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+}
+
+.menu-list li:active {
+  background: var(--surface-2);
+}
+
+.menu-list .menu-icon {
+  font-size: 20px;
+}
+
+.menu-list .menu-count {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-dim);
+  background: var(--surface-2);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+/* ---------- Views ---------- */
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+  animation: fade 0.2s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Willkommen ---------- */
+.welcome {
+  text-align: center;
+  padding: 48px 26px 0;
+}
+
+.welcome-badge {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 22px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, var(--accent), #ff8a3d);
+  display: grid;
+  place-items: center;
+  font-size: 44px;
+  box-shadow: var(--shadow);
+}
+
+.welcome h1 {
+  font-size: 26px;
+  margin: 0 0 14px;
+  letter-spacing: -0.5px;
+}
+
+.welcome p {
+  color: var(--text-dim);
+  font-size: 16px;
+  margin: 0 0 26px;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.primary-btn:active {
+  transform: scale(0.98);
+}
+
+.welcome .hint {
+  font-size: 13px;
+  margin-top: 18px;
+}
+
+/* ---------- Kategorie / Technikliste ---------- */
+.back-btn {
+  margin: 16px 16px 0;
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 15px;
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.view-title {
+  margin: 8px 18px 4px;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 18px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+
+.card:active {
+  transform: scale(0.98);
+  border-color: var(--accent);
+}
+
+.card .thumb {
+  flex: 0 0 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--surface-2), #2c3340);
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+}
+
+.card .card-body h3 {
+  margin: 0 0 2px;
+  font-size: 16px;
+}
+
+.card .card-body p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.card .meta {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text-dim);
+}
+
+.tag.level-Anfänger { color: #4ade80; }
+.tag.level-Fortgeschritten { color: #fbbf24; }
+.tag.level-Profi { color: #f87171; }
+
+/* ---------- Detailseite ---------- */
+.video-placeholder {
+  margin: 12px 18px 0;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  background:
+    repeating-linear-gradient(45deg, #1c2029, #1c2029 12px, #20242e 12px, #20242e 24px);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.video-placeholder .play {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow);
+}
+
+.video-placeholder .play::after {
+  content: "";
+  border-left: 18px solid #fff;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  margin-left: 4px;
+}
+
+.video-placeholder .label {
+  position: absolute;
+  bottom: 10px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.detail-content {
+  padding: 16px 18px;
+}
+
+.detail-content h2 {
+  margin: 4px 0 6px;
+  font-size: 22px;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.detail-content h4 {
+  margin: 22px 0 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--accent-2);
+}
+
+.detail-content p {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.detail-content ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.detail-content li {
+  position: relative;
+  padding: 8px 0 8px 28px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+
+.detail-content li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 15px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.detail-content .drills li::before {
+  background: var(--accent-2);
+}
