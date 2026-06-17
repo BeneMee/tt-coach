@@ -10,3 +10,6 @@ desktop.ini
 # Logs / temp
 *.log
 node_modules/
+
+# Claude Code lokale Einstellungen
+.claude/
